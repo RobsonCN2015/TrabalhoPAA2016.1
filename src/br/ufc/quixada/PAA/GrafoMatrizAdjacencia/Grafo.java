@@ -1,4 +1,4 @@
-package br.ufc.quixada.PAA.EstruturaGrafoListaEncadeada;
+package br.ufc.quixada.PAA.GrafoMatrizAdjacencia;
 
 public class Grafo {
 	private int numVertices;
@@ -27,11 +27,11 @@ public class Grafo {
 	}
 	
 	public void insereAresta(int v, int u, int p){
-			if(v!= 0 && u!=0){
-				if(p == 1 && v <= this.numVertices && u <= this.numVertices){
+			if(v!= 0 && u!=0 && v <= this.numVertices && u <= this.numVertices){
+				if(p == 1){
 					this.m [v][u]= p;
 				}
-				if(p==2 && v <= this.numVertices && u <= this.numVertices){
+				if(p == 2){
 					this.m[v][u] = p-1;
 					this.m[u][v] = p-1;
 					

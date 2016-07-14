@@ -1,4 +1,6 @@
-package br.ufc.quixada.PAA.EstruturaGrafoListaEncadeada;
+package br.ufc.quixada.PAA.Comp_Fort_Conectados;
+
+import br.ufc.quixada.PAA.GrafoMatrizAdjacencia.Grafo;
 
 public class Comp_Fort_Conectados {
 	private Grafo grafo;
@@ -18,11 +20,13 @@ public class Comp_Fort_Conectados {
 		this.cor = new int[tamanho];
 
 	}
+	//inicializa o vetor de cores dos vertices com a cor branca
 	private void inicializa(int[][]m){
 		for (int u = 1; u < m.length; u++) {
 			this.cor[u] = branco;
 		}
 	}
+	// para cada vertice branco visite seus vertices na matriz de adjacencia
 	private void visitaDfs(){
 		this.inicializa(this.grafo.getM());
 		for (int vertice = 1; vertice < this.grafo.getM().length; vertice++) {
@@ -32,6 +36,7 @@ public class Comp_Fort_Conectados {
 		}
 		
 	}
+	// visita os vertices adjacentes ao vertice passado por parêmetro
 	private void visitaAdj(int vertice){
 		this.cor[vertice] = cinza;
 		tempo = tempo + 1;
@@ -50,7 +55,7 @@ public class Comp_Fort_Conectados {
 		
 		int b = 0;
 	}
-	
+	//visita os adjacentes porém agora sem quardar o tempo de descoberta e o tempo de finalização
 	private void visitaAdj2(int vertice){
 		this.cor[vertice] = cinza;
 
@@ -64,7 +69,7 @@ public class Comp_Fort_Conectados {
 		this.cor[vertice] = preto;
 			
 	}
-	
+	// retorna o vertice com maior tempo de finalizacao
 	public int maxTT() {
 		int verticeMaior = 0;
 		int max = 0;
@@ -77,21 +82,26 @@ public class Comp_Fort_Conectados {
 
 		return verticeMaior;
 	}
-	
+	// retorna 0 se existe mais de uma componente fortemente conexa no grafo, retorna 1 caso exista apenas 1.
 	public int obterCfs(){
+		//aplica a busca em profundidade pro Grafo
 		this.visitaDfs();
+		//cria o grafo transposto 
 		int[][] gT = this.grafo.grafoTransposto();
 		this.grafo.setM(gT);
-		
+		//inicializa a matriz do grafo transposto com cor zero
 		this.inicializa(this.grafo.getM());
+		//retorna vertice com maior tempo de inicializacao
 		int a  = this.maxTT();
+		//aplica a busca em profundidade para os vertices adjacentes ao vertice a
 		visitaAdj2(a);
-		
+		// verifica se algum vertice deixou de ser visitado
 		for (int v = 1; v < this.grafo.getM().length; v++) {
 			if (cor[v]==branco) {
 				return 0;
 			}
 		}
+		// se todos os vertices foram visitados existe apenas 1 CFC no grafo
 		return 1;
 	}
 }
