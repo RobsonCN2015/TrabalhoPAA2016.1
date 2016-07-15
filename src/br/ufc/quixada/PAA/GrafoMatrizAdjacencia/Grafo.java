@@ -38,6 +38,8 @@ public class Grafo {
 				}
 			}
 	}
+	// Cria o grafoTransposto(Transposta da Matriz)
+	// Complexidade O (n²)
 	public int[][] grafoTransposto(){
 		int[][] mT = new int[this.m.length][this.m.length];
 		

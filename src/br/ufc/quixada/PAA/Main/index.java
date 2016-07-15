@@ -11,7 +11,7 @@ public class index {
 		// TODO Auto-generated method stub
 		Scanner s = new Scanner(System.in);
 		
-		
+		// recebe valores do input
 		int numVertices = s.nextInt();
 		int numAresta = s.nextInt();
 		Grafo grafo = new Grafo();
@@ -30,14 +30,11 @@ public class index {
 			grafo.insereAresta(v, w, p);
 
 		}
-		/*
-		grafo.insereAresta(1, 2, 1);
-		grafo.insereAresta(1, 3, 2);
-		grafo.insereAresta(2, 4, 1);
-		grafo.insereAresta(3, 4, 1);
-		grafo.insereAresta(4, 1, 2);*/
+		// Verifica se o grafo é apenas uma Componente fortemente conectada. Caso verdadeiro retorna 1, caso contário retorna 0.
 		Comp_Fort_Conectados cfc = new Comp_Fort_Conectados(grafo);	
 		System.err.println(cfc.obterCfs());
+		
+		// Complexidade custo da busca em profundidade no grafo é O (V+E) + custo do grafo trasnposto O(n²) => O(n² +(V+E));
 		
 	}
 

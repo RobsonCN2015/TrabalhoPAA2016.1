@@ -21,12 +21,14 @@ public class Comp_Fort_Conectados {
 
 	}
 	//inicializa o vetor de cores dos vertices com a cor branca
+	//Complecidade O (V)
 	private void inicializa(int[][]m){
 		for (int u = 1; u < m.length; u++) {
 			this.cor[u] = branco;
 		}
 	}
 	// para cada vertice branco visite seus vertices na matriz de adjacencia
+	// complexidade O(V + E)
 	private void visitaDfs(){
 		this.inicializa(this.grafo.getM());
 		for (int vertice = 1; vertice < this.grafo.getM().length; vertice++) {
@@ -56,6 +58,7 @@ public class Comp_Fort_Conectados {
 		int b = 0;
 	}
 	//visita os adjacentes porém agora sem quardar o tempo de descoberta e o tempo de finalização
+	//Complexidade O(V + E)
 	private void visitaAdj2(int vertice){
 		this.cor[vertice] = cinza;
 
@@ -70,6 +73,7 @@ public class Comp_Fort_Conectados {
 			
 	}
 	// retorna o vertice com maior tempo de finalizacao
+	// Complexidade O(V)
 	public int maxTT() {
 		int verticeMaior = 0;
 		int max = 0;
@@ -83,6 +87,7 @@ public class Comp_Fort_Conectados {
 		return verticeMaior;
 	}
 	// retorna 0 se existe mais de uma componente fortemente conexa no grafo, retorna 1 caso exista apenas 1.
+	
 	public int obterCfs(){
 		//aplica a busca em profundidade pro Grafo
 		this.visitaDfs();
